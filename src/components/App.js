@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Table } from 'react-bootstrap';
 import Select from 'react-select';
+import { fetchInfo } from '../actions/actions_info';
+import { connect } from 'react-redux';
 
 
-class App extends Component {
+class AppComponent extends Component {
 
   constructor(props) {
     super(props);
@@ -14,19 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://www.json-generator.com/api/json/get/bVGbNZouuW?indent=2', {
-      method: 'GET'
-    })
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      this.setState({
-        jsonList: json
-      })
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    fetchInfo();
   }
 
   handleChange = (selectedOption) => {
@@ -115,5 +105,7 @@ class App extends Component {
     );
   }
 }
+
+const App = connect()(AppComponent);
 
 export default App;
