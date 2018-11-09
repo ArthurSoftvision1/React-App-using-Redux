@@ -16,7 +16,7 @@ class AppComponent extends Component {
   }
 
   componentDidMount() {
-    fetchInfo();
+    this.props.dispatch(fetchInfo())
   }
 
   handleChange = (selectedOption) => {
